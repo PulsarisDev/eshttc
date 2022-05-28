@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>头像生成器</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Pulsaris</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">头像</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">关于</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <br />
+    <div class="container text-center">
+        <img id="outputImage" src="" class="img-thumbnail" style="opacity: 0;" alt="生成图片" />
+    </div>
+    <br />
+    <div class="container text-center">
+        <input id="inputFile" type="file" accept="image/*" class="btn btn-light">
+    </div>
+
+    <script src="./static/mergeimage.js"></script>
+    <script>
+        const $ = document.getElementById.bind(document);
+        const $inputFile = $('inputFile');
+        const $outputImage = $('outputImage');
+        $inputFile.addEventListener('change', function() {
+            const file = this.files[0];
+            const bgurl = URL.createObjectURL(file);
+            $outputImage.style = "opacity: 1;";
+            mergeImage(bgurl,'./static/foreground.png');
+            //document.querySelector('#outputImage').setAttribute('src', canvas.toDataURL());
+        }, this);
+    </script>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
